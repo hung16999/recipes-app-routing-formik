@@ -1,5 +1,11 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
+.link {
+  text-decoration: none;
+  color: grey;
+  padding: 15px;
+}
+
 .img-avatar {
   width: 70px;
   height: 70px;
@@ -13,4 +19,5 @@
   padding: 7px;
   margin: 5px;
   border-radius: 10px;
+  cursor: pointer;
 }

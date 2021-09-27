@@ -60,7 +60,7 @@ const BlankForm = () => {
       ingredients: values.ingredients,
     };
 
-    recipes.push(newRecipe);
+    recipes.unshift(newRecipe);
     formikHelper.resetForm();
     history.push("/recipes");
   };
@@ -100,7 +100,7 @@ const BlankForm = () => {
             </div>
 
             <div className="d-flex flex-column">
-              <label className="mb-4">
+              <label className="mb-3">
                 Name
                 <Field type="text" name="name" className="form-control" />
                 <ErrorMessage
@@ -110,9 +110,17 @@ const BlankForm = () => {
                 />
               </label>
 
-              <label className="mb-4">
+              <label className="mb-3">
                 Image URL
                 <Field type="text" name="imageUrl" className="form-control" />
+                {formHelper.values.imageUrl && (
+                  <img
+                    width="200px"
+                    className="img-thumbnail"
+                    src={formHelper.values.imageUrl}
+                    alt=""
+                  />
+                )}
                 <ErrorMessage
                   name="imageUrl"
                   component="div"
@@ -120,7 +128,7 @@ const BlankForm = () => {
                 />
               </label>
 
-              <label className="mb-4">
+              <label className="mb-3">
                 Description
                 <Field
                   as="textarea"

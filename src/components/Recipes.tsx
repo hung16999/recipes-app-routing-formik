@@ -4,6 +4,7 @@ import { Route, useHistory, useLocation, useRouteMatch } from "react-router";
 import { v4 } from "uuid";
 import { recipes } from "../constants/recipes";
 import BlankForm from "./BlankForm";
+import RecipeDetail from "./RecipeDetail";
 
 const Recipes = () => {
   const history = useHistory();
@@ -12,14 +13,14 @@ const Recipes = () => {
   const [isShowButtonNew, setIsShowButtonNew] = useState<boolean>();
 
   const handleClickNewRecipe = () => {
-    history.push(`${url}/${v4()}`);
+    history.push(`${url}/form/${v4()}`);
   };
 
   useEffect(() => {
-    if (location.pathname === "/recipes") {
-      setIsShowButtonNew(true);
-    } else {
+    if (location.pathname.includes("/recipes/form")) {
       setIsShowButtonNew(false);
+    } else {
+      setIsShowButtonNew(true);
     }
   }, [location]);
 
@@ -27,17 +28,17 @@ const Recipes = () => {
     <>
       <div className="row">
         <div className="col-6">
-          {isShowButtonNew && (
-            <Button variant="success" onClick={handleClickNewRecipe}>
-              new recipe
-            </Button>
-          )}
+          <Button
+            variant="success"
+            onClick={handleClickNewRecipe}
+            disabled={!isShowButtonNew}
+          >
+            new recipe
+          </Button>
         </div>
 
         <div className="col-6">
-          <Route path={`${url}`} exact={true}>
-            <h3>Please select a Recipe!</h3>
-          </Route>
+          <h3>Please select a Recipe!</h3>
         </div>
       </div>
 
@@ -47,6 +48,9 @@ const Recipes = () => {
             <div
               key={recipe.id}
               className="recipe-info d-flex justify-content-between align-items-center"
+              onClick={() => {
+                history.push(`${url}/${recipe.id}`);
+              }}
             >
               <div>
                 <b>{recipe.name}</b>
@@ -58,8 +62,12 @@ const Recipes = () => {
           ))}
         </div>
         <div className="col-6">
-          <Route path={`${url}/:recipeId`} exact={true}>
+          <Route path={`${url}/form/:recipeId`} exact={true}>
             <BlankForm />
+          </Route>
+
+          <Route path={`${url}/:recipeId`}>
+            <RecipeDetail />
           </Route>
         </div>
       </div>
