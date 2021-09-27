@@ -1,1 +1,16 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+.img-avatar {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.recipe-info {
+  width: 400px;
+  background: #e2e6e9;
+  padding: 7px;
+  margin: 5px;
+  border-radius: 10px;
+}
