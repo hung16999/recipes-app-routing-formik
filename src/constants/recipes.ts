@@ -1,6 +1,6 @@
 import { Recipe } from "./interfaceRecipe";
 
-export let recipes: Recipe[] = [
+export const recipesList: Recipe[] = [
   {
     id: "df",
     name: "Bún chả",

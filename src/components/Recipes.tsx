@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Route, useHistory, useLocation, useRouteMatch } from "react-router";
 import { v4 } from "uuid";
-import { recipes } from "../constants/recipes";
+import { Recipe } from "../constants/interfaceRecipe";
+import { recipesList } from "../constants/recipes";
 import BlankForm from "./BlankForm";
+import FormEdit from "./FormEdit";
 import RecipeDetail from "./RecipeDetail";
 
 const Recipes = () => {
+  const [recipes, setRecipes] = useState<Recipe[]>(recipesList);
   const history = useHistory();
   const location = useLocation();
   const { url } = useRouteMatch();
@@ -69,7 +72,11 @@ const Recipes = () => {
           </Route>
 
           <Route path={`${url}/:recipeId`} exact={true}>
-            <RecipeDetail />
+            <RecipeDetail recipes={recipes} setRecipes={setRecipes} />
+          </Route>
+
+          <Route path={`${url}/form-edit/:recipeId`} exact={true}>
+            <FormEdit recipes={recipes} setRecipes={setRecipes} />
           </Route>
         </div>
       </div>

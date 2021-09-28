@@ -11,7 +11,7 @@ import {
 } from "formik";
 import { Button } from "react-bootstrap";
 import { Ingredient, Recipe } from "../constants/interfaceRecipe";
-import { recipes } from "../constants/recipes";
+import { recipesList } from "../constants/recipes";
 
 const BlankForm = () => {
   const { recipeId } = useParams<{ recipeId: string }>();
@@ -59,7 +59,7 @@ const BlankForm = () => {
       ingredients: values.ingredients,
     };
 
-    recipes.unshift(newRecipe);
+    recipesList.unshift(newRecipe);
     formikHelper.resetForm();
     history.push("/recipes");
   };
