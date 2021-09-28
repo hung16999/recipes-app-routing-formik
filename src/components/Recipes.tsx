@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Route, useHistory, useLocation, useRouteMatch } from "react-router";
 import { v4 } from "uuid";
@@ -37,9 +37,11 @@ const Recipes = () => {
           </Button>
         </div>
 
-        <div className="col-6">
-          <h3>Please select a Recipe!</h3>
-        </div>
+        <Route path={`${url}`} exact={true}>
+          <div className="col-6">
+            <h3>Please select a Recipe!</h3>
+          </div>
+        </Route>
       </div>
 
       <div className="row">
@@ -66,7 +68,7 @@ const Recipes = () => {
             <BlankForm />
           </Route>
 
-          <Route path={`${url}/:recipeId`}>
+          <Route path={`${url}/:recipeId`} exact={true}>
             <RecipeDetail />
           </Route>
         </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import { useHistory, useParams } from "react-router";
 import {
   Formik,
@@ -154,7 +153,7 @@ const BlankForm = () => {
                         className="form-control me-3"
                       />
                       <Field
-                        type="text"
+                        type="number"
                         name={`ingredients[${index}].quantity`}
                         className="form-control me-3"
                       />
